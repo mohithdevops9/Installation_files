@@ -1,0 +1,19 @@
+sudo apt-get update -y
+sudo apt-get install default-jdk -y
+sudo groupadd tomcat
+sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+cd /tmp
+sudo wget https://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.78/bin/apache-tomcat-8.5.78.tar.gz
+sudo mkdir /opt/tomcat
+sudo tar -xvf apache-tomcat-8.5.78.tar.gz
+sudo cp -R apache-tomcat-8.5.78/* /opt/tomcat
+sudo chgrp -R tomcat /opt/tomcat
+cd /opt/tomcat
+sudo chmod -R g+r conf
+sudo chmod g+x conf
+sudo chown -R tomcat webapps/ work/ temp/ logs/
+sudo update-java-alternatives -l
+sudo vi /etc/systemd/system/tomcat.service
+sudo systemctl daemon-reload
+sudo systemctl start tomcat
+sudo systemctl status tomcat
