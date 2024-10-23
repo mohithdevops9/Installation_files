@@ -1,0 +1,10 @@
+1  lsblk
+    2  sudo file -s /dev/xvdn
+    3  sudo mkfs -t xfs /dev/xvdn
+    4  mkdir test_newvolume
+    5  cd test_newvolume/
+    6  sudo mount /dev/xvdn /home/ubuntu/test_newvolume/
+    7  lsblk
+    8  sudo xfs_growfs /dev/xvdn
+    9  lsblk
+   10  history
